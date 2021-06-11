@@ -1,0 +1,88 @@
+
+
+<% if logged_in?() %>
+    <div class="hum-section">
+        <h2 class="home-heading">Home</h2>
+              
+
+        <div class="hums-feed">
+            <div class="panel">
+                <img class="photo-hum" src="<%= current_user()['photo_url']%>" alt="">
+
+                <form class="form" action="/hums" method="post">
+                    <textarea class="hum-textarea" name="text" id="" cols="38" rows="3" placeholder="What's humming?"></textarea>
+                    <button>Hum</button>
+                </form>
+            </div>
+
+            <% if hums.count > 0 %>
+                <% hums.each do |hum| %>
+                    <div class="hum">
+                        <img class="photo-hum" src="<%= hum['photo_url'] %>" alt="">
+                        <p class="hum-right-col"><a href="/<%= hum['username'] %>"><%= hum['display_name'] %> </a>  <span class="at-symbol">@</span><%= hum['username'] %> <span class="dot-symbol">.</span> <%= age_in_units(hum['age'].to_i) %> </p>
+                        <div class="empty"></div>
+                        <p class="hum-right-col"><%= hum['text'] %></p>
+                        <div class="empty"></div>
+                        <div class="like-section hum-right-col">
+                            <% if hum['user_like'].to_i > 0 %>
+                                <form action="/likes" method="post">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="hidden" name="id" value="<%= hum['id'] %>">
+                                    <button>Unlike</button>
+                                </form>
+                            <% elsif hum['author_id'] != current_user()['id'] %>
+                                <form action="/likes" method="post">
+                                    <input type="hidden" name="id" value="<%= hum['id'] %>">
+                                    <button>Like</button>
+                                </form>
+                            <% end %>
+                            <img class="like-icon" src="images/hum-icons/heart-shape-outline.png" alt=""><span class="like-span"><%= hum['like_count'] %></span>
+                        
+                        </div>
+                        
+                    </div>
+                <% end %>
+            <%else%>
+                <div class="hum">
+                    <div class="empty"></div>
+                    <div class="no-feed">
+                        <p>Sounds like no one's humming today :(</p>
+                        <p>Why don't you find someone to follow or hum something?</p>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+<% else %>
+    <div class="splash-page">
+        <div class="splash-left">
+            <img class="landing-giraffe" src="images/landing_giraffe.png" alt="">
+        </div>
+
+        <div class="splash-right">
+            <div class="splash-copy-box">
+                <h1 class="splash-title">Hummer <span class="title-social">Social</span></h1>
+            
+                <form class="form-splash" action="/session" method="post">
+          
+                    <input class="input-splash" type="text" name="email" placeholder="Email" spellcheck="false">
+          
+                    <input class="input-splash" type="password" name="password" placeholder="Password">
+                    <button class="log-in-btn">Log In</button>
+                </form>
+                <p>First time? <a href="/signup">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+<% end %>
+
+
+

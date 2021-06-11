@@ -1,0 +1,22 @@
+<div class="hum-section">
+    <div class="header-tile">
+        <div class="image-wrapper">
+            <img onclick="location.href='/';" class="left-pointer" src="images/hum-icons/chevron-pointing-to-the-left.png" alt="">
+        </div>
+        <h2 class="title-hummers">Hummers</h2>
+    </div>
+
+    <% hummers.each do |hummer| %>
+        
+
+            <div onclick="location.href='/<%= hummer['username'] %>';" style="cursor: pointer;" class="profile-tile-hummers">
+                <img class="photo-hummers" src="<%= hummer['photo_url'] %>" alt="">
+                <div class="hummers-text">
+                    <p class="name-hummers"><a href="/<%= hummer['username'] %>"><%= hummer['display_name'] %></a> <span>@<%= hummer['username'] %></span></p>
+                    <p class="tagline-hummers"><%= hummer['tagline'] %></p>
+                </div>
+            </div>
+
+    <% end %>
+
+</div>

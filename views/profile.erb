@@ -1,0 +1,81 @@
+<div class="hum-section">
+
+    <div class="header-tile">
+        <div class="image-wrapper">
+            <img onclick="location.href='/';" class="left-pointer" src="images/hum-icons/chevron-pointing-to-the-left.png" alt="">
+        </div>
+        <h2 class="title-hummers"><%= profile['display_name'] %></h2>
+    </div>
+    <div class="profile-tile">
+
+        <img class="photo" src="<%= profile['photo_url'] %>" alt="">
+        <div class="profile-text-box">
+            <p>@<%= profile['username'] %></p>
+            <p><%= profile['tagline'] %></p>
+            <p>Followers: <%= follower_count['count'].to_i - 1 %> </p>
+            <p>Follows: <%= follows_count['count'].to_i - 1 %></p>
+            <% if profile['id'] == current_user()['id'] %>
+                <form action="/settings/profile" method="post">
+                    <input type="hidden" name="id" value="<%= profile['id'] %>">
+                    <button>Edit profile</button>
+                </form>
+            <% elsif follow_results.count > 0 %>
+                <form action="/follows" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="id" value="<%=profile['id']%>">
+                    <button>Unfollow</button>
+                </form>
+            <% else %>
+                <form action="/follows" method="post">
+                    <input type="hidden" name="id" value="<%= profile['id'] %>">
+                    <button>Follow</button>
+                </form>
+            <% end %>
+        </div>
+    </div>
+    
+
+
+    <div class="hum-feed">
+        
+         <% if hums.count > 0 %>
+                <% hums.each do |hum| %>
+                    <div class="hum">
+                        <img class="photo-hum" src="<%= hum['photo_url'] %>" alt="">
+                        <p class="hum-right-col"><a href="/<%= hum['username'] %>"><%= hum['display_name'] %> </a>  <span class="at-symbol">@</span><%= hum['username'] %> <span class="dot-symbol">.</span> <%= age_in_units(hum['age'].to_i) %> </p>
+                        <div class="empty"></div>
+                        <p class="hum-right-col"><%= hum['text'] %></p>
+                        <div class="empty"></div>
+                        <div class="like-section hum-right-col">
+                            <% if hum['user_like'].to_i > 0 %>
+                                <form action="/likes" method="post">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="hidden" name="id" value="<%= hum['id'] %>">
+                                    <button>Unlike</button>
+                                </form>
+                            <% elsif hum['author_id'] != current_user()['id'] %>
+                                <form action="/likes" method="post">
+                                    <input type="hidden" name="id" value="<%= hum['id'] %>">
+                                    <button>Like</button>
+                                </form>
+                            <% end %>
+                            <img class="like-icon" src="images/hum-icons/heart-shape-outline.png" alt=""><span class="like-span"><%= hum['like_count'] %></span>
+                        
+                        </div>
+                        
+                    </div>
+                <% end %>
+            <%else%>
+                <div class="hum">
+                    <p>Sounds like no one's humming today :(</p>
+                    <p>Why don't you find someone to follow or hum something?</p>
+                </div>
+            <%end%>   
+        
+
+    
+    </div>
+
+
+
+</div>

@@ -1,0 +1,39 @@
+
+    <div class="splash-page">
+            <div class="splash-left">
+                <img class="landing-giraffe" src="images/landing_giraffe.png" alt="">
+            </div>
+
+            <div class="splash-right">
+                <div class="splash-copy-box">
+                    <h1 class="splash-title">Hummer <span class="title-social">Social</span></h1>
+                
+                    <form class="form-splash" action="/session" method="post">
+            
+                        <input class="input-splash" type="text" name="email" placeholder="Email">
+            
+                        <input class="input-splash" type="password" name="password" placeholder="Password">
+                        <button class="log-in-btn">Log In</button>
+                    </form>
+                    <p>First time? <a href="/signup">Sign up</a></p>
+                </div>
+            </div>
+    </div>
+
+
+<div class="overlay">
+    <div class="signup-div">
+        <h1>Sign up</h1>
+
+        <form class="signup-form" action="/create_user" method="post">
+
+            <input class="input-signup email-signup" type="text" name="email" placeholder="Email" spellcheck="false">
+            <input class="input-signup" type="text" name="username" placeholder="Username" spellcheck="false">
+            <input class="input-signup" type="password" name="password" placeholder="Password">
+
+            <button class="sign-up-btn">Sign up</button>
+        </form>
+    </div>
+</div>
+
+<script src="javascripts/application.js"></script>

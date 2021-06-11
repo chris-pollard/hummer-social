@@ -1,0 +1,31 @@
+<div class="hum-section">
+    <div class="header-tile">
+        <div class="image-wrapper">
+            <img onclick="location.href='/';" class="left-pointer" src="images/hum-icons/chevron-pointing-to-the-left.png" alt="">
+        </div>
+        <h2 class="title-hummers"><%= profile['display_name'] %></h2>
+    </div>
+    <div class="profile-tile">
+        <img class="photo" src="<%= profile['photo_url'] %>" alt="">
+        <p class="edit-username">Username: <%= profile['username'] %> </p>
+        <div class="empty"></div>
+        <form class="edit-profile-form" action="/settings/profile/<%= profile['id'] %>" enctype="multipart/form-data" method="post">
+        
+            <input type="hidden" name="_method" value="put">
+
+            <label class="edit-label" for="">Display name</label>
+            <input class="edit-input" type="text" name="display_name" value="<%= profile['display_name'] %>">
+
+            <label class="edit-label" for="">Biography</label>
+            <input class="edit-input" type="text" name="tagline" value="<%= profile['tagline'] %>">
+
+            <label class="edit-label"  for="">Date of Birth</label>
+            <input class="edit-input" type="date" name="date_of_birth" value="<%= profile['date_of_birth'] %>">
+
+            <button class="edit-button">Save</button>
+            
+        </form>
+    
+    </div>
+</div>
+

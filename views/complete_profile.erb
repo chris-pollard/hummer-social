@@ -1,0 +1,33 @@
+<div class="hum-section">
+
+    <div class="header-tile">
+        <div class="image-wrapper">
+            <img onclick="location.href='/';" class="left-pointer" src="images/hum-icons/chevron-pointing-to-the-left.png" alt="">
+        </div>
+        <h2 class="title-complete">Complete your profile</h2>
+    </div>
+
+    <form class="complete-form" action="/settings/profile/<%= profile['id'] %>" enctype="multipart/form-data" method="post">
+    
+        <input class="form-item" type="hidden" name="_method" value="put">
+
+        <label class="form-item" for="">Display name</label>
+        <input type="text" name="display_name">
+
+        <label class="form-item" for="">Biography</label>
+        <input type="text" name="tagline">
+
+        <label class="form-item" for="">Profile picture</label>
+        <input type="file" name="photo_url">
+
+        <label class="form-item" for="">Date of Birth</label>
+        <input type="date" name="date_of_birth">
+
+        <button class="form-item" >Save</button>
+        
+    </form>
+
+
+    <a href="/">Skip</a>
+
+</div>

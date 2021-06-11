@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hummer Social</title>
+  <link rel='stylesheet' href='/stylesheets/main.css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+  
+
+    <% if logged_in?() %>
+      <div class="wrapper">
+        <div class="nav-panel">
+          <nav class="nav-box">
+            <a class="nav-item" href="/"><img class="logo-nav" src="images/giraffe_orange_logo.jpg" alt=""></a>
+            <a class="nav-item" href="/">Home</a>
+            <a class="nav-item" href="/hummers">Browse hummers</a>
+            <a class="nav-item" href="/<%= current_user()['username']%>">Profile</a>
+            <a class="nav-item" href="/hummers">Hum</a>
+          </nav>
+
+          <nav class="nav-box-compact">
+            <a class="nav-item" href="/"><img class="logo-nav" src="images/giraffe_orange_logo.jpg" alt=""></a>
+            <a class="nav-item" href="/"><img class="icon-nav" src="images/hum-icons/home.png" alt=""></a>
+            
+            <a class="nav-item" href="/"><img class="icon-nav" src="images/hum-icons/group-profile-users.png" alt=""></a>
+            <a class="nav-item" href="/"><img class="icon-nav" src="images/hum-icons/user-shape.png" alt=""></a>
+            <a class="nav-item" href="/"><img class="icon-nav" src="images/hum-icons/bull-horn-announcer.png" alt=""></a>
+          </nav>
+
+          <div class="bottom-nav">
+            <img class="photo-nav" src="<%= current_user()['photo_url']%>" alt="">
+            <p class="nav-display-name"><%= current_user()['display_name']%></p>
+            <form class="log-out-form" action="/session" method="post">
+              <input type="hidden" name="_method" value="delete" >
+              <button>Log out</button>
+            </form> 
+            <div class="icon-attribute">Icons made by <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+          </div>
+        </div>
+        <%= yield %>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+
+
+</body>
+</html>

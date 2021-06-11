@@ -8,6 +8,7 @@ require 'httparty'
 require 'date'
 require 'time'
 require 'cloudinary'
+require 'pg'
 
 enable :sessions
 

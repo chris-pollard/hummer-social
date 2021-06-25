@@ -19,7 +19,7 @@
                 <% hums.each do |hum| %>
                     <div class="hum">
                         <img class="photo-hum" src="<%= hum['photo_url'] %>" alt="">
-                        <p class="hum-right-col"><a href="/<%= hum['username'] %>"><%= hum['display_name'] %> </a>  <span class="at-symbol">@</span><%= hum['username'] %> <span class="dot-symbol">.</span> <%= age_in_units(hum['age'].to_i) %> </p>
+                        <p class="hum-right-col"><a href="/<%= hum['username'] %>"><%= hum['display_name'] %> </a>  <span class="at-symbol">@</span><%= hum['username'] %> <span class="dot-symbol"> </span> <%= age_in_units(hum['age'].to_i) %> </p>
                         <div class="empty"></div>
                         <p class="hum-right-col"><%= hum['text'] %></p>
                         <div class="empty"></div>

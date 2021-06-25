@@ -25,4 +25,4 @@ Demonstration of a simple CRUD web app, using Ruby and SQL, and deploying to an 
 
 
 ### Schema
-[Entity Relationship Diagram](erd.png)
+![Entity Relationship Diagram](erd.png)
